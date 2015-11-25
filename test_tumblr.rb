@@ -2,13 +2,14 @@ require 'selenium-webdriver'
 require 'yaml'
 browser = Selenium::WebDriver.for :firefox
 browser.get "https://www.tumblr.com/login"
-file = YAML.load_file('./details.yaml')
+file = YAML.load_file('./details.yml')
  file["user"].each do |yaml_user|
- 		browser.find_element(id: "signup_email").send_keys "#{yaml_user["eamil"]}" 
+ 		browser.find_element(id: "signup_email").send_keys "#{yaml_user["email"]}" 
         browser.find_element(id: "signup_password").send_keys "#{yaml_user["password"]}"
     end
+
 #singUpEmail = browser.find_element(id: "signup_email").send_keys "nightmar@live.co.uk" 
-#singUpPassword = browser.find_element(id: "signup_password").send_keys "*******"
+#singUpPassword = browser.find_element(id: "signup_password").send_keys "example2"
 logInButton = browser.find_element(id: "signup_forms_submit").click
 iconPostText = browser.find_element(class: "icon_post_text").click
 textBoxSpace = browser.find_element(class: "editor-richtext").send_keys "Testing something here"
